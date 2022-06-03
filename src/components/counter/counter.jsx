@@ -14,7 +14,7 @@ function Counter(props) {
     // }
     setCounterValue((prevState) => prevState - 1);
   };
-
+  //
   const isCounterPositive = counterValue > 0;
   // parasyti funkcija handleCounterChange() kuri mazina arba didina counterValue 1
 
