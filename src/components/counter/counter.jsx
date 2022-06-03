@@ -15,7 +15,7 @@ function Counter() {
       prevCountVal > 0 ? prevCountVal - 1 : prevCountVal + 1
     );
   }
-
+  //
   //disable mygtuka kai 0: disable={true}, tai rasai disable={counterValue===0}
 
   function countMinusCantBeNeg() {
