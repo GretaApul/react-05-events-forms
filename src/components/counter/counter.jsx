@@ -1,58 +1,45 @@
 import { useState } from 'react';
-//
-//
-function Counter() {
-  const [counterValue, setCounterValue] = useState(0);
 
-  function countPlusOne() {
-    setCounterValue((prevCountVal) => prevCountVal + 1);
-  }
-  function countMinusOne() {
-    setCounterValue((prevCountVal) => prevCountVal - 1);
-  }
-  function countPlusAndMinus() {
-    setCounterValue((prevCountVal) =>
-      prevCountVal > 0 ? prevCountVal - 1 : prevCountVal + 1
-    );
-  }
+function Counter(props) {
+  // let counterValue = 0
+  const [counterValue, setCounterValue] = useState(props.startValue || 0);
 
-  //disable mygtuka kai 0: disable={true}, tai rasai disable={counterValue===0}
-
-  function countMinusCantBeNeg() {
-    setCounterValue((prevCountVal) =>
-      prevCountVal > 0 ? prevCountVal - 1 : alert('cant be minus')
-    );
+  function handleCounterIncrement() {
+    // counterUp(props.id, 5);
+    setCounterValue((prevState) => prevState + 1);
   }
+  const handleCounterDecrement = () => {
+    // if (counterValue <= 0) {
+    //   return;
+    // }
+    setCounterValue((prevState) => prevState - 1);
+  };
+
   const isCounterPositive = counterValue > 0;
+  // parasyti funkcija handleCounterChange() kuri mazina arba didina counterValue 1
+
+  // handleCounterIncrement() infinite loop
 
   return (
     <div className="counter">
-      <h3>Counter</h3>
-      <p className="error"></p>
-      <h2 className={`${isCounterPositive ? 'green' : 'red'} `}>{counterValue}</h2>
+      <h3>{props.title} Counter</h3>
+      <h2>{counterValue}</h2>
       <div className="control">
-        <button onClick={countPlusOne} className="btn">
+        <button onClick={handleCounterIncrement} className="btn">
           plus
         </button>
-        <button onClick={countMinusOne} className="btn">
-          minus
-        </button>
-        <button
-          disabled={counterValue === 0}
-          onClick={countMinusCantBeNeg}
-          className="btn"
-        >
-          minus iki neig
-        </button>
-        <button onClick={countPlusAndMinus} className="btn">
-          plius minus
-        </button>
-
-        {/* ==================== */}
-        <button></button>
-        {/* ==================== */}
+        {isCounterPositive && (
+          <button
+            // disabled={!isCounterPositive}
+            onClick={handleCounterDecrement}
+            className="btn"
+          >
+            minus
+          </button>
+        )}
       </div>
     </div>
   );
 }
+
 export default Counter;
